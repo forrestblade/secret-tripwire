@@ -1,0 +1,5 @@
+export { scan } from './scanner.js'
+export { redact } from './redactor.js'
+export { SECRET_PATTERNS } from './patterns.js'
+export { SecretType, TripwireErrorCode } from './types.js'
+export type { Detection, ScanResult, TripwireError } from './types.js'
