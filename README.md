@@ -35,11 +35,11 @@ Add to `~/.claude/settings.json`:
 
 | Secret Type | Pattern | Example |
 |-------------|---------|---------|
-| AWS Access Key | `AKIA[0-9A-Z]{16}` | `AKIAIOSFODNN7EXAMPLE` |
-| GitHub Token | `ghp_`, `gho_`, `ghs_`, `github_pat_` | `ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh` |
-| Private Key | `-----BEGIN * PRIVATE KEY-----` | RSA, EC, PGP, OPENSSH, DSA |
-| JWT Token | `eyJ...eyJ...` (base64url) | `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOi...` |
-| Connection String | `postgresql://`, `mongodb+srv://`, etc. | `postgresql://user:pass@host/db` |
+| AWS Access Key | `AKIA*` / `ASIA*` | `AKIAIOSFODNN7EXAMPLE` |
+| GitHub Token | `ghp_`, `gho_`, `ghs_`, `ghr_`, `gha_`, `github_pat_` | `ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh` |
+| Private Key | `-----BEGIN * PRIVATE KEY-----` | RSA, EC, PKCS#8, PGP, OPENSSH, DSA |
+| JWT Token | `eyJ...eyJ...` (base64url, incl. `alg:none`) | `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOi...` |
+| Connection String | `postgresql://`, `postgres://`, `mongodb+srv://`, etc. | `postgres://user:pass@host/db` |
 | API Key | `api_key: "..."`, `secret_key=...` | `api_key: "sk_live_abcdef1234567890"` |
 | Bearer Token | `Bearer <40+ chars>` | `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6...` |
 
@@ -61,7 +61,7 @@ import { scan, redact } from 'secret-tripwire'
 // Scan text for secrets
 const result = scan('My AWS key is AKIAIOSFODNN7EXAMPLE')
 console.log(result.clean)       // false
-console.log(result.detections)  // [{ type: 'AWS_KEY', match: 'AKIAIОСF...', index: 17 }]
+console.log(result.detections)  // [{ type: 'AWS_KEY', match: 'AKIAIOSF...', index: 14 }]
 
 // Redact secrets from text
 const { redacted, count } = redact('Key: AKIAIOSFODNN7EXAMPLE')

@@ -1,6 +1,6 @@
 {
   "name": "secret-tripwire",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "PostToolUse hook that scans Claude Code tool outputs for leaked secrets",
   "bin": {

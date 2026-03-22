@@ -37,7 +37,7 @@ function formatOutput (labels: readonly string[]): string {
   return JSON.stringify({
     hookSpecificOutput: {
       hookEventName: 'PostToolUse',
-      additionalContext: `[SECRET-TRIPWIRE] WARNING: Detected ${count} potential secret${count === 1 ? '' : 's'} (${labelList}) in tool output. DO NOT repeat or reference the raw output. The secrets have been logged for review.`,
+      additionalContext: `[SECRET-TRIPWIRE] WARNING: Detected ${count} potential secret${count === 1 ? '' : 's'} (${labelList}) in tool output. DO NOT repeat, quote, or reference the raw output contents.`,
     },
   })
 }
